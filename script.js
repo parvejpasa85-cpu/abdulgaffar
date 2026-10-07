@@ -78,13 +78,16 @@
     revealEls.forEach((el) => el.classList.add("in"));
   }
 
-  /* ---------- 5. Image error fallback (hide broken moments) ---------- */
-  document.querySelectorAll(".moment img").forEach((img) => {
-    img.addEventListener("error", () => {
-      img.style.display = "none";
-    });
+  /* ---------- 5. Image fallback (only hide if truly broken) ---------- */
+document.querySelectorAll(".moment img").forEach((img) => {
+  img.addEventListener("error", () => {
+    img.style.opacity = "0";   // পুরো hide না, শুধু fade out
+    // fade out করলে নিচের span দেখাবে
   });
-
+  img.addEventListener("load", () => {
+    img.style.opacity = "1";
+  });
+});
   /* ---------- 6. Magnetic back-to-top button ---------- */
   const magnetic = document.querySelector(".magnetic");
   if (magnetic && isFine) {
