@@ -200,7 +200,7 @@
       },
     };
 
-    const bigIndexes = [0, 5];
+    const bigIndexes = [];
 
     function render(tabKey) {
       const data = DATA[tabKey];
