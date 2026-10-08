@@ -126,7 +126,7 @@ document.querySelectorAll(".moment img").forEach((img) => {
   function render(folder, prefix, count) {
     grid.innerHTML = "";
     for (let i = 1; i <= count; i++) {
-      const src = `images/moments/${folder}/${prefix}${i}.jpg`;
+      const src = `./assets/images/moments/${folder}/${prefix}${i}.jpg`;
       const isBig = bigIndexes.includes(i - 1);
 
       const div = document.createElement("div");
