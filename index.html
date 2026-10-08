@@ -167,30 +167,54 @@
     </div>
 
     <div class="cred-grid">
+      <!-- Education timeline -->
       <div class="glass card-glow reveal cred-card">
-        <div class="section-kicker">Education</div>
+        <div class="cred-head">
+          <span class="cred-icon">🎓</span>
+          <div>
+            <div class="section-kicker">Education</div>
+            <h3 class="cred-heading">Where I've studied</h3>
+          </div>
+        </div>
+
         <div class="cred-list">
-          <div>
-            <div class="cred-name">RUET</div>
-            <div class="muted small">B.Sc. in Electrical &amp; Electronic Engineering · 25 Series</div>
+          <div class="cred-row">
+            <div class="cred-marker"></div>
+            <div class="cred-body">
+              <div class="cred-name">RUET</div>
+              <div class="muted small">B.Sc. in Electrical &amp; Electronic Engineering · 25 Series</div>
+            </div>
+            <div class="cred-year">2026 →</div>
           </div>
-          <div>
-            <div class="cred-name">Notre Dame College, Dhaka</div>
-            <div class="muted small">HSC · Science · 2025 · GPA 5.00</div>
+
+          <div class="cred-row">
+            <div class="cred-marker"></div>
+            <div class="cred-body">
+              <div class="cred-name">Notre Dame College, Dhaka</div>
+              <div class="muted small">HSC · Science · GPA 5.00</div>
+            </div>
+            <div class="cred-year">2025</div>
           </div>
-          <div>
-            <div class="cred-name">Asian School</div>
-            <div class="muted small">SSC · Science · 2023 · Section A</div>
+
+          <div class="cred-row">
+            <div class="cred-marker"></div>
+            <div class="cred-body">
+              <div class="cred-name">Asian School</div>
+              <div class="muted small">SSC · Science · Section A</div>
+            </div>
+            <div class="cred-year">2023</div>
           </div>
         </div>
       </div>
 
+      <!-- Admission scores -->
       <div class="window reveal">
         <div class="window-chrome">
           <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
           <span class="window-title">admission.scores</span>
         </div>
         <div class="window-body">
+          <div class="scores-intro muted small">University admission test ranks</div>
           <div class="scores-grid">
             <div><span class="muted small">RUET</span><strong>821</strong></div>
             <div><span class="muted small">CUET</span><strong>515</strong></div>
@@ -208,7 +232,6 @@
     </div>
   </div>
 </section>
-
 <!-- CERTIFICATES -->
 <section id="certificates" class="section">
   <div class="container">
@@ -321,6 +344,7 @@
     </div>
 
     <div class="personal-grid">
+      <!-- MUSIC -->
       <div class="window reveal">
         <div class="window-chrome">
           <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
@@ -328,31 +352,198 @@
         </div>
         <div class="window-body">
           <div class="win-head"><span class="ico-inline">🎵</span><h3>Music</h3></div>
-          <p class="muted small">A personal listening shelf.</p>
-          <div class="music-tags">
-            <span>Darkside — Alan Walker</span>
-            <span>Faded — Alan Walker</span>
-            <span>Broken Angel — Arash</span>
-            <span>Blue — yung kai</span>
-            <span>I'm a Mess — Bebe Rexha</span>
-            <span>Let Me Down Slowly</span>
-            <span>Believer — Imagine Dragons</span>
-            <span>Skyfall — Adele</span>
-            <span>Somewhere Only We Know</span>
-            <span>Hall of Fame</span>
-            <span>Tera Mera Rishta</span>
-            <span>Zara Zara</span>
-            <span>Jhol — Maanu</span>
-            <span>Hasi Ban Gaye</span>
-            <span>Ranjha / Rataan Lambiyan</span>
-            <span>Tumi — Level Five</span>
-            <span>Bahir Bole Dure Thakuk</span>
-            <span>Nupur 2</span>
-            <span>Ure Jare Munia</span>
+          <p class="muted small">A personal listening shelf. Click a cover to play on YouTube.</p>
+
+          <!-- Filter -->
+          <div class="music-filter">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="bangla">Bangla</button>
+            <button class="filter-btn" data-filter="english">English</button>
+            <button class="filter-btn" data-filter="hindi">Hindi</button>
+            <button class="filter-btn" data-filter="urdu">Urdu</button>
+          </div>
+
+          <!-- Music list -->
+          <div class="music-list">
+            <!-- English -->
+            <a class="music-item" data-lang="english" href="https://www.youtube.com/results?search_query=Darkside+Alan+Walker" target="_blank" rel="noreferrer">
+              <div class="music-thumb"><span>♪</span></div>
+              <div class="music-info">
+                <div class="music-title">Darkside</div>
+                <div class="muted small">Alan Walker · Au/Ra · Tomine Harket</div>
+              </div>
+              <div class="music-play">▶</div>
+            </a>
+
+            <a class="music-item" data-lang="english" href="https://www.youtube.com/results?search_query=Faded+Alan+Walker" target="_blank" rel="noreferrer">
+              <div class="music-thumb"><span>♪</span></div>
+              <div class="music-info">
+                <div class="music-title">Faded</div>
+                <div class="muted small">Alan Walker</div>
+              </div>
+              <div class="music-play">▶</div>
+            </a>
+
+            <a class="music-item" data-lang="english" href="https://www.youtube.com/results?search_query=Broken+Angel+Arash" target="_blank" rel="noreferrer">
+              <div class="music-thumb"><span>♪</span></div>
+              <div class="music-info">
+                <div class="music-title">Broken Angel</div>
+                <div class="muted small">Arash feat. Helena</div>
+              </div>
+              <div class="music-play">▶</div>
+            </a>
+
+            <a class="music-item" data-lang="english" href="https://www.youtube.com/results?search_query=Blue+yung+kai" target="_blank" rel="noreferrer">
+              <div class="music-thumb"><span>♪</span></div>
+              <div class="music-info">
+                <div class="music-title">Blue</div>
+                <div class="muted small">yung kai</div>
+              </div>
+              <div class="music-play">▶</div>
+            </a>
+
+            <a class="music-item" data-lang="english" href="https://www.youtube.com/results?search_query=I'm+a+Mess+Bebe+Rexha" target="_blank" rel="noreferrer">
+              <div class="music-thumb"><span>♪</span></div>
+              <div class="music-info">
+                <div class="music-title">I'm a Mess</div>
+                <div class="muted small">Bebe Rexha</div>
+              </div>
+              <div class="music-play">▶</div>
+            </a>
+
+            <a class="music-item" data-lang="english" href="https://www.youtube.com/results?search_query=Let+Me+Down+Slowly+Alec+Benjamin" target="_blank" rel="noreferrer">
+              <div class="music-thumb"><span>♪</span></div>
+              <div class="music-info">
+                <div class="music-title">Let Me Down Slowly</div>
+                <div class="muted small">Alec Benjamin</div>
+              </div>
+              <div class="music-play">▶</div>
+            </a>
+
+            <a class="music-item" data-lang="english" href="https://www.youtube.com/results?search_query=Believer+Imagine+Dragons" target="_blank" rel="noreferrer">
+              <div class="music-thumb"><span>♪</span></div>
+              <div class="music-info">
+                <div class="music-title">Believer</div>
+                <div class="muted small">Imagine Dragons</div>
+              </div>
+              <div class="music-play">▶</div>
+            </a>
+
+            <a class="music-item" data-lang="english" href="https://www.youtube.com/results?search_query=Skyfall+Adele" target="_blank" rel="noreferrer">
+              <div class="music-thumb"><span>♪</span></div>
+              <div class="music-info">
+                <div class="music-title">Skyfall</div>
+                <div class="muted small">Adele</div>
+              </div>
+              <div class="music-play">▶</div>
+            </a>
+
+            <a class="music-item" data-lang="english" href="https://www.youtube.com/results?search_query=Somewhere+Only+We+Know+Keane" target="_blank" rel="noreferrer">
+              <div class="music-thumb"><span>♪</span></div>
+              <div class="music-info">
+                <div class="music-title">Somewhere Only We Know</div>
+                <div class="muted small">Keane</div>
+              </div>
+              <div class="music-play">▶</div>
+            </a>
+
+            <a class="music-item" data-lang="english" href="https://www.youtube.com/results?search_query=Hall+of+Fame+The+Script" target="_blank" rel="noreferrer">
+              <div class="music-thumb"><span>♪</span></div>
+              <div class="music-info">
+                <div class="music-title">Hall of Fame</div>
+                <div class="muted small">The Script feat. will.i.am</div>
+              </div>
+              <div class="music-play">▶</div>
+            </a>
+
+            <!-- Hindi -->
+            <a class="music-item" data-lang="hindi" href="https://www.youtube.com/results?search_query=Tera+Mera+Rishta+Mustafa+Zahid" target="_blank" rel="noreferrer">
+              <div class="music-thumb"><span>♪</span></div>
+              <div class="music-info">
+                <div class="music-title">Tera Mera Rishta</div>
+                <div class="muted small">Mustafa Zahid</div>
+              </div>
+              <div class="music-play">▶</div>
+            </a>
+
+            <a class="music-item" data-lang="hindi" href="https://www.youtube.com/results?search_query=Zara+Zara+Bombay+Jayashri" target="_blank" rel="noreferrer">
+              <div class="music-thumb"><span>♪</span></div>
+              <div class="music-info">
+                <div class="music-title">Zara Zara</div>
+                <div class="muted small">Bombay Jayashri</div>
+              </div>
+              <div class="music-play">▶</div>
+            </a>
+
+            <a class="music-item" data-lang="hindi" href="https://www.youtube.com/results?search_query=Hasi+Ban+Gaye+Ami+Mishra" target="_blank" rel="noreferrer">
+              <div class="music-thumb"><span>♪</span></div>
+              <div class="music-info">
+                <div class="music-title">Hasi Ban Gaye</div>
+                <div class="muted small">Ami Mishra</div>
+              </div>
+              <div class="music-play">▶</div>
+            </a>
+
+            <a class="music-item" data-lang="hindi" href="https://www.youtube.com/results?search_query=Ranjha+Rataan+Lambiyan" target="_blank" rel="noreferrer">
+              <div class="music-thumb"><span>♪</span></div>
+              <div class="music-info">
+                <div class="music-title">Ranjha / Rataan Lambiyan</div>
+                <div class="muted small">Shershaah</div>
+              </div>
+              <div class="music-play">▶</div>
+            </a>
+
+            <!-- Urdu -->
+            <a class="music-item" data-lang="urdu" href="https://www.youtube.com/results?search_query=Jhol+Maanu+Annural+Khalid" target="_blank" rel="noreferrer">
+              <div class="music-thumb"><span>♪</span></div>
+              <div class="music-info">
+                <div class="music-title">Jhol</div>
+                <div class="muted small">Maanu · Annural Khalid</div>
+              </div>
+              <div class="music-play">▶</div>
+            </a>
+
+            <!-- Bangla -->
+            <a class="music-item" data-lang="bangla" href="https://www.youtube.com/results?search_query=Tumi+Level+Five" target="_blank" rel="noreferrer">
+              <div class="music-thumb"><span>♪</span></div>
+              <div class="music-info">
+                <div class="music-title">Tumi</div>
+                <div class="muted small">Level Five</div>
+              </div>
+              <div class="music-play">▶</div>
+            </a>
+
+            <a class="music-item" data-lang="bangla" href="https://www.youtube.com/results?search_query=Bahir+Bole+Dure+Thakuk" target="_blank" rel="noreferrer">
+              <div class="music-thumb"><span>♪</span></div>
+              <div class="music-info">
+                <div class="music-title">Bahir Bole Dure Thakuk</div>
+                <div class="muted small">Bangla</div>
+              </div>
+              <div class="music-play">▶</div>
+            </a>
+
+            <a class="music-item" data-lang="bangla" href="https://www.youtube.com/results?search_query=Nupur+2" target="_blank" rel="noreferrer">
+              <div class="music-thumb"><span>♪</span></div>
+              <div class="music-info">
+                <div class="music-title">Nupur 2</div>
+                <div class="muted small">Bangla</div>
+              </div>
+              <div class="music-play">▶</div>
+            </a>
+
+            <a class="music-item" data-lang="bangla" href="https://www.youtube.com/results?search_query=Ure+Jare+Munia" target="_blank" rel="noreferrer">
+              <div class="music-thumb"><span>♪</span></div>
+              <div class="music-info">
+                <div class="music-title">Ure Jare Munia</div>
+                <div class="muted small">Bangla</div>
+              </div>
+              <div class="music-play">▶</div>
+            </a>
           </div>
         </div>
       </div>
 
+      <!-- BOOKS -->
       <div class="window reveal">
         <div class="window-chrome">
           <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
@@ -384,7 +575,6 @@
     </div>
   </div>
 </section>
-
 <!-- MOMENTS -->
 <section id="moments" class="section">
   <div class="container">

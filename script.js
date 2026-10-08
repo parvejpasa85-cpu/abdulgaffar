@@ -1,6 +1,6 @@
 /* =========================================================
    Abdul Gaffar — Digital Space
-   Vanilla JS: cursor, navbar, mobile menu, scroll reveal, gallery
+   Vanilla JS: cursor, navbar, mobile menu, scroll reveal, gallery, music filter
    ========================================================= */
 
 (function () {
@@ -22,7 +22,7 @@
       dot.style.top = my + "px";
 
       const t = e.target;
-      const hover = t.closest("a, button, .card-glow, .window");
+      const hover = t.closest("a, button, .card-glow, .window, .music-item, .cred-row");
       ring.classList.toggle("hover", !!hover);
     });
 
@@ -200,19 +200,16 @@
       },
     };
 
-    const bigIndexes = [];
-
     function render(tabKey) {
       const data = DATA[tabKey];
       if (!data) return;
 
       grid.innerHTML = "";
-      data.files.forEach((file, i) => {
+      data.files.forEach((file) => {
         const src = data.base + file;
-        const isBig = bigIndexes.includes(i);
 
         const div = document.createElement("div");
-        div.className = "moment reveal" + (isBig ? " big" : "");
+        div.className = "moment reveal";
 
         const img = document.createElement("img");
         img.src = src;
@@ -246,5 +243,30 @@
     });
 
     render(tabs[0].dataset.tab);
+  })();
+
+  /* ---------- 8. Music filter (All / Bangla / English / Hindi / Urdu) ---------- */
+  (function initMusicFilter() {
+    const filterBtns = document.querySelectorAll(".music-filter .filter-btn");
+    const items = document.querySelectorAll(".music-item");
+    if (!filterBtns.length || !items.length) return;
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        filterBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const filter = btn.dataset.filter;
+
+        items.forEach((item) => {
+          const lang = item.dataset.lang;
+          if (filter === "all" || lang === filter) {
+            item.classList.remove("hidden");
+          } else {
+            item.classList.add("hidden");
+          }
+        });
+      });
+    });
   })();
 })();
