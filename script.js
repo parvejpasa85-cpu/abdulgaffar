@@ -1,6 +1,6 @@
 /* =========================================================
    Abdul Gaffar — Digital Space
-   Vanilla JS: cursor, navbar, mobile menu, scroll reveal, magnetic
+   Vanilla JS: cursor, navbar, mobile menu, scroll reveal, gallery
    ========================================================= */
 
 (function () {
@@ -64,7 +64,6 @@
       (entries) => {
         entries.forEach((entry, i) => {
           if (entry.isIntersecting) {
-            // stagger children slightly
             const delay = Math.min(i * 40, 240);
             setTimeout(() => entry.target.classList.add("in"), delay);
             io.unobserve(entry.target);
@@ -78,17 +77,7 @@
     revealEls.forEach((el) => el.classList.add("in"));
   }
 
-  /* ---------- 5. Image fallback (only hide if truly broken) ---------- */
-document.querySelectorAll(".moment img").forEach((img) => {
-  img.addEventListener("error", () => {
-    img.style.opacity = "0";   // পুরো hide না, শুধু fade out
-    // fade out করলে নিচের span দেখাবে
-  });
-  img.addEventListener("load", () => {
-    img.style.opacity = "1";
-  });
-});
-  /* ---------- 6. Magnetic back-to-top button ---------- */
+  /* ---------- 5. Magnetic back-to-top button ---------- */
   const magnetic = document.querySelector(".magnetic");
   if (magnetic && isFine) {
     magnetic.addEventListener("mousemove", (e) => {
@@ -102,7 +91,7 @@ document.querySelectorAll(".moment img").forEach((img) => {
     });
   }
 
-  /* ---------- 7. Subtle parallax on hero orbs ---------- */
+  /* ---------- 6. Subtle parallax on hero orbs ---------- */
   if (isFine) {
     const orbs = document.querySelectorAll(".orb");
     window.addEventListener("mousemove", (e) => {
@@ -114,58 +103,148 @@ document.querySelectorAll(".moment img").forEach((img) => {
       });
     });
   }
-  /* ---------- 8. Moments gallery — auto-load from folder + prefix ---------- */
-(function initMoments() {
-  const grid = document.getElementById("momentsGrid");
-  const tabs = document.querySelectorAll(".moment-tabs .tab");
-  if (!grid || !tabs.length) return;
 
-  // কোন index গুলো "big" হবে (grid এ double width/height)
-  const bigIndexes = [0, 5];
+  /* ---------- 7. Moments gallery — hardcoded file list ---------- */
+  (function initMoments() {
+    const grid = document.getElementById("momentsGrid");
+    const tabs = document.querySelectorAll(".moment-tabs .tab");
+    if (!grid || !tabs.length) return;
 
-  function render(folder, prefix, count) {
-    grid.innerHTML = "";
-    for (let i = 1; i <= count; i++) {
-      const src = `./assets/images/moments/${folder}/${prefix}${i}.jpg`;
-      const isBig = bigIndexes.includes(i - 1);
+    const DATA = {
+      rajshahi: {
+        base: "assets/images/moments/rajshahi_photos/",
+        files: [
+          "rajshahi1.jpg",
+          "rajshahi2.jpg",
+          "rajshahi3.jpg",
+          "rajshahi4.jpg",
+          "rajshahi5.jpg",
+          "rajshahi6.jpg",
+        ],
+      },
+      visits: {
+        base: "assets/images/moments/photos/visits/",
+        files: [
+          "5thaug24.jpeg",
+          "bookfair1.jpeg",
+          "bookfair2.jpeg",
+          "bookfair3.jpeg",
+          "chillox1.jpeg",
+          "chillox2.jpeg",
+          "chillox3.jpeg",
+          "nationalmuseumvisit.jpeg",
+          "raj-me_tanvir_mridul.jpeg",
+          "tsc.jpeg",
+        ],
+      },
+      hostel: {
+        base: "assets/images/moments/photos/hostel_related/",
+        files: [
+          "hostel1.jpeg",
+          "hostel2.jpeg",
+          "hostel3.jpeg",
+          "hostel4.jpeg",
+          "hostel5.jpeg",
+          "hostel6.jpeg",
+          "hostel7.jpeg",
+          "hostel8.jpeg",
+        ],
+      },
+      college: {
+        base: "assets/images/moments/photos/college_related/",
+        files: [
+          "clgfr1.jpeg",
+          "clgfr2.jpeg",
+          "clgfr3.jpeg",
+          "clgfr4.jpeg",
+          "clgfr5.jpeg",
+          "clgfr6.jpeg",
+          "clgfr7.jpeg",
+          "clgfr8.jpeg",
+          "clgfr9.jpeg",
+          "clgfr10.jpeg",
+        ],
+      },
+      self: {
+        base: "assets/images/moments/photos/self/",
+        files: [
+          "me1.jpeg",
+          "me2.jpeg",
+          "me3.jpeg",
+          "me4.jpeg",
+          "me5.jpeg",
+          "me6.jpeg",
+          "me7.jpeg",
+          "me8.jpeg",
+          "me9.jpeg",
+          "me10.jpeg",
+          "me11.jpeg",
+        ],
+      },
+      university: {
+        base: "assets/images/moments/university_photos/",
+        files: ["ruet1.jpg", "ruet2.jpg", "ruet3.jpg", "ruet4.jpg"],
+      },
+      ndc: {
+        base: "assets/images/moments/college/",
+        files: [
+          "ndc1.jpg",
+          "ndc2.jpg",
+          "ndc3.jpg",
+          "ndc4.jpg",
+          "ndc5.jpg",
+          "ndc6.jpg",
+          "ndc7.JPG",
+          "ndc8.jpg",
+        ],
+      },
+    };
 
-      const div = document.createElement("div");
-      div.className = "moment reveal" + (isBig ? " big" : "");
+    const bigIndexes = [0, 5];
 
-      const img = document.createElement("img");
-      img.src = src;
-      img.alt = `${prefix} ${i}`;
-      img.loading = "lazy";
-      img.onerror = () => { img.style.opacity = "0"; };
-      img.onload = () => { img.style.opacity = "1"; };
+    function render(tabKey) {
+      const data = DATA[tabKey];
+      if (!data) return;
 
-      const span = document.createElement("span");
-      span.textContent = `${prefix}${i}.jpg`;
+      grid.innerHTML = "";
+      data.files.forEach((file, i) => {
+        const src = data.base + file;
+        const isBig = bigIndexes.includes(i);
 
-      div.appendChild(img);
-      div.appendChild(span);
-      grid.appendChild(div);
+        const div = document.createElement("div");
+        div.className = "moment reveal" + (isBig ? " big" : "");
 
-      // reveal animation
-      requestAnimationFrame(() => div.classList.add("in"));
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = file.replace(/\.[^.]+$/, "");
+        img.loading = "lazy";
+        img.onerror = () => {
+          console.warn("[moment] missing:", src);
+          img.style.opacity = "0";
+        };
+        img.onload = () => {
+          img.style.opacity = "1";
+        };
+
+        const span = document.createElement("span");
+        span.textContent = file;
+
+        div.appendChild(img);
+        div.appendChild(span);
+        grid.appendChild(div);
+
+        requestAnimationFrame(() => div.classList.add("in"));
+      });
     }
-  }
 
-  // Click handler
-  tabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      tabs.forEach((t) => t.classList.remove("active"));
-      tab.classList.add("active");
-      render(
-        tab.dataset.folder,
-        tab.dataset.prefix,
-        parseInt(tab.dataset.count, 10)
-      );
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        tabs.forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
+        render(tab.dataset.tab);
+      });
     });
-  });
 
-  // Initial render — first tab
-  const first = tabs[0];
-  render(first.dataset.folder, first.dataset.prefix, parseInt(first.dataset.count, 10));
-})();
+    render(tabs[0].dataset.tab);
+  })();
 })();

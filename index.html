@@ -57,78 +57,33 @@
 <section class="hero grid-noise">
   <div class="hero-glow"></div>
   <div class="container hero-inner">
+
     <div class="hero-portrait reveal">
-  <div class="portrait-ring"></div>
-  <img src="assets/images/moments/abdul_gaffar_casual_picture.JPG" alt="Abdul Gaffar" />
-</div>
+      <div class="portrait-frame">
+        <img src="assets/images/moments/abdul_gaffar_casual_picture.JPG" alt="Abdul Gaffar" />
+      </div>
+    </div>
+
     <div class="kicker reveal">
-      <div class="hero-portrait reveal">
-  <div class="portrait-ring"></div>
-  <img src="assets/images/hero/portrait.jpg" alt="Abdul Gaffar" />
-</div>
       <span class="sparkle">✦</span> Personal Digital Space · 2026
     </div>
+
     <h1 class="hero-title reveal">
       Abdul<br /><span class="gradient-text">Gaffar.</span>
     </h1>
+
     <p class="hero-sub reveal">
       Hello, This is Abdul Gaffar! Welcome to my digital space!
       <span class="quote">“Happily Ever After doesn’t come so easily.”</span>
     </p>
+
     <div class="hero-cta reveal">
       <a href="#about" class="btn btn-primary">Explore the space ↓</a>
       <a href="#connect" class="btn btn-ghost">Connect ↗</a>
     </div>
+
   </div>
 </section>
-
-<!-- ABOUT -->
-<section id="about" class="section">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-kicker">01 / About</div>
-      <h2>A little bit about me</h2>
-    </div>
-
-    <div class="about-grid">
-      <div class="glass card-glow reveal">
-        <p class="about-lead">
-          I’m <span class="gradient-text">Abdul Gaffar</span>, an Electrical &amp;
-          Electronic Engineering student at Rajshahi University of Engineering &amp; Technology.
-          I enjoy learning across engineering and technology, experimenting with digital
-          products, and documenting moments through photography.
-        </p>
-        <p class="about-body">
-          Right now, my attention is moving between Git/GitHub, C, Python, Linux,
-          English communication, and AI-assisted web &amp; app development.
-          I’m also exploring networking and cybersecurity.
-        </p>
-        <div class="chips">
-          <span class="chip">📍 Rajshahi, Bangladesh</span>
-          <span class="chip">🎓 RUET · EEE</span>
-          <span class="chip">✨ 25 Series</span>
-        </div>
-      </div>
-
-      <div class="window reveal">
-        <div class="window-chrome">
-          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-          <span class="window-title">~/status.log</span>
-        </div>
-        <div class="window-body">
-          <div class="muted small">Currently</div>
-          <div class="status-title">1st Year · 2nd Semester</div>
-          <div class="muted small">EEE · RUET · 25 Series</div>
-          <div class="status-grid">
-            <div>C</div><div>Python</div><div>Git/GitHub</div>
-            <div>Linux</div><div>English</div><div>AI dev</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- JOURNEY -->
 <section id="journey" class="section">
   <div class="container">
@@ -432,12 +387,15 @@
     </div>
 
     <!-- Filter tabs -->
-    <div class="moment-tabs reveal">
-      <button class="tab active" data-folder="rajshahi_photos" data-prefix="rajshahi" data-count="6">Rajshahi</button>
-      <button class="tab" data-folder="photos/visits" data-prefix="visit" data-count="10">Visits</button>
-      <button class="tab" data-folder="photos/hostel_related" data-prefix="hostel" data-count="8">Hostel</button>
-      <button class="tab" data-folder="photos/college_related" data-prefix="clgfr" data-count="10">College</button>
-    </div>
+<div class="moment-tabs reveal">
+  <button class="tab active" data-tab="rajshahi">Rajshahi</button>
+  <button class="tab" data-tab="visits">Visits</button>
+  <button class="tab" data-tab="hostel">Hostel</button>
+  <button class="tab" data-tab="college">College</button>
+  <button class="tab" data-tab="self">Self</button>
+  <button class="tab" data-tab="university">University</button>
+  <button class="tab" data-tab="ndc">NDC</button>
+</div>
 
     <!-- Grid — JS populate করবে -->
     <div class="moments-grid" id="momentsGrid"></div>
