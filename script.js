@@ -114,4 +114,58 @@ document.querySelectorAll(".moment img").forEach((img) => {
       });
     });
   }
+  /* ---------- 8. Moments gallery — auto-load from folder + prefix ---------- */
+(function initMoments() {
+  const grid = document.getElementById("momentsGrid");
+  const tabs = document.querySelectorAll(".moment-tabs .tab");
+  if (!grid || !tabs.length) return;
+
+  // কোন index গুলো "big" হবে (grid এ double width/height)
+  const bigIndexes = [0, 5];
+
+  function render(folder, prefix, count) {
+    grid.innerHTML = "";
+    for (let i = 1; i <= count; i++) {
+      const src = `images/moments/${folder}/${prefix}${i}.jpg`;
+      const isBig = bigIndexes.includes(i - 1);
+
+      const div = document.createElement("div");
+      div.className = "moment reveal" + (isBig ? " big" : "");
+
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = `${prefix} ${i}`;
+      img.loading = "lazy";
+      img.onerror = () => { img.style.opacity = "0"; };
+      img.onload = () => { img.style.opacity = "1"; };
+
+      const span = document.createElement("span");
+      span.textContent = `${prefix}${i}.jpg`;
+
+      div.appendChild(img);
+      div.appendChild(span);
+      grid.appendChild(div);
+
+      // reveal animation
+      requestAnimationFrame(() => div.classList.add("in"));
+    }
+  }
+
+  // Click handler
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      tabs.forEach((t) => t.classList.remove("active"));
+      tab.classList.add("active");
+      render(
+        tab.dataset.folder,
+        tab.dataset.prefix,
+        parseInt(tab.dataset.count, 10)
+      );
+    });
+  });
+
+  // Initial render — first tab
+  const first = tabs[0];
+  render(first.dataset.folder, first.dataset.prefix, parseInt(first.dataset.count, 10));
+})();
 })();

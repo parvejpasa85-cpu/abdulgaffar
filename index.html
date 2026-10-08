@@ -423,16 +423,16 @@
       <h2>Photos will live here.</h2>
     </div>
 
-    <div class="moments-grid">
-      <div class="moment big reveal"><img src="assets/images/moments/photo-01.jpg" alt="Moment 1" loading="lazy" /><span>photo-01.jpg</span></div>
-      <div class="moment reveal"><img src="assets/images/moments/photo-02.jpg" alt="Moment 2" loading="lazy" /><span>photo-02.jpg</span></div>
-      <div class="moment reveal"><img src="assets/images/moments/photo-03.jpg" alt="Moment 3" loading="lazy" /><span>photo-03.jpg</span></div>
-      <div class="moment reveal"><img src="assets/images/moments/photo-04.jpg" alt="Moment 4" loading="lazy" /><span>photo-04.jpg</span></div>
-      <div class="moment reveal"><img src="assets/images/moments/photo-05.jpg" alt="Moment 5" loading="lazy" /><span>photo-05.jpg</span></div>
-      <div class="moment big reveal"><img src="assets/images/moments/photo-06.jpg" alt="Moment 6" loading="lazy" /><span>photo-06.jpg</span></div>
-      <div class="moment reveal"><img src="assets/images/moments/photo-07.jpg" alt="Moment 7" loading="lazy" /><span>photo-07.jpg</span></div>
-      <div class="moment reveal"><img src="assets/images/moments/photo-08.jpg" alt="Moment 8" loading="lazy" /><span>photo-08.jpg</span></div>
+    <!-- Filter tabs -->
+    <div class="moment-tabs reveal">
+      <button class="tab active" data-folder="rajshahi_photos" data-prefix="rajshahi" data-count="6">Rajshahi</button>
+      <button class="tab" data-folder="photos/visits" data-prefix="visit" data-count="10">Visits</button>
+      <button class="tab" data-folder="photos/hostel_related" data-prefix="hostel" data-count="8">Hostel</button>
+      <button class="tab" data-folder="photos/college_related" data-prefix="clgfr" data-count="10">College</button>
     </div>
+
+    <!-- Grid — JS populate করবে -->
+    <div class="moments-grid" id="momentsGrid"></div>
   </div>
 </section>
 
