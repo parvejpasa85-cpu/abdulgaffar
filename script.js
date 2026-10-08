@@ -269,4 +269,126 @@
       });
     });
   })();
+    /* ---------- 9. Hero carousel (coverflow) ---------- */
+  (function initHeroCarousel() {
+    const stage = document.getElementById("carouselStage");
+    const dotsWrap = document.getElementById("carouselDots");
+    if (!stage || !dotsWrap) return;
+
+    // ⬇️ এখানে তোমার ৫টা ছবি দাও — 순서대로
+    const IMAGES = [
+      "assets/images/moments/abdul_gaffar_casual_picture.JPG",
+      "assets/images/moments/abdulgaffar_formal_picture.jpg",
+      "assets/images/moments/photos/self/me1.jpeg",
+      "assets/images/moments/photos/self/me2.jpeg",
+      "assets/images/moments/photos/self/me3.jpeg",
+    ];
+
+    const N = IMAGES.length;
+    const slides = [];
+    let currentIndex = 0;
+    let autoTimer = null;
+
+    // Create slides
+    IMAGES.forEach((src, i) => {
+      const slide = document.createElement("div");
+      slide.className = "carousel-slide";
+      slide.dataset.index = i;
+
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = `Hero ${i + 1}`;
+      img.draggable = false;
+
+      slide.appendChild(img);
+      stage.appendChild(slide);
+      slides.push(slide);
+    });
+
+    // Create dots
+    IMAGES.forEach((_, i) => {
+      const dot = document.createElement("button");
+      dot.className = "carousel-dot";
+      dot.setAttribute("aria-label", `Go to image ${i + 1}`);
+      dot.addEventListener("click", () => {
+        goTo(i);
+        restartAuto();
+      });
+      dotsWrap.appendChild(dot);
+    });
+    const dots = dotsWrap.querySelectorAll(".carousel-dot");
+
+    // Position helpers
+    function positionFor(offset) {
+      // offset: 0 = center, ±1 = near, ±2 = far, else hidden
+      const half = Math.floor(N / 2);
+      let o = offset;
+      // wrap into range [-half, half]
+      while (o > half) o -= N;
+      while (o < -half) o += N;
+
+      if (o === 0) return "pos-center";
+      if (o === 1) return "pos-near-right";
+      if (o === -1) return "pos-near-left";
+      if (o === 2) return "pos-far-right";
+      if (o === -2) return "pos-far-left";
+      return "pos-hidden";
+    }
+
+    function update() {
+      slides.forEach((slide, i) => {
+        let offset = i - currentIndex;
+        // wrap offset to shortest path
+        const half = Math.floor(N / 2);
+        if (offset > half) offset -= N;
+        if (offset < -half) offset += N;
+
+        // remove all pos-* classes
+        slide.className = "carousel-slide " + positionFor(offset);
+      });
+
+      dots.forEach((d, i) => d.classList.toggle("active", i === currentIndex));
+    }
+
+    function next() {
+      currentIndex = (currentIndex + 1) % N;
+      update();
+    }
+    function prev() {
+      currentIndex = (currentIndex - 1 + N) % N;
+      update();
+    }
+    function goTo(i) {
+      currentIndex = i;
+      update();
+    }
+
+    function startAuto() {
+      stopAuto();
+      autoTimer = setInterval(next, 3200);
+    }
+    function stopAuto() {
+      if (autoTimer) clearInterval(autoTimer);
+      autoTimer = null;
+    }
+    function restartAuto() {
+      startAuto();
+    }
+
+    // Pause on hover (nice UX)
+    const carousel = document.getElementById("heroCarousel");
+    carousel.addEventListener("mouseenter", stopAuto);
+    carousel.addEventListener("mouseleave", startAuto);
+
+    // Keyboard arrows (accessibility)
+    document.addEventListener("keydown", (e) => {
+      if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+      if (e.key === "ArrowRight") { next(); restartAuto(); }
+      if (e.key === "ArrowLeft") { prev(); restartAuto(); }
+    });
+
+    // Init
+    update();
+    startAuto();
+  })();
 })();
