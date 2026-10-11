@@ -720,21 +720,31 @@ code { font-family: ui-monospace, monospace; font-size: .9em; color: var(--accen
     radial-gradient(circle at 80% 80%, rgba(121, 168, 255, 0.10), transparent 55%),
     linear-gradient(135deg, #141b24, #0d1117);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* ---- image preview ---- */
+/* ---- landscape variant (for wide certificates) ---- */
+.ach-preview.landscape {
+  aspect-ratio: 16 / 10;
+}
+
+/* ---- image preview: show ENTIRE cert, no crop ---- */
 .ach-preview img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  object-fit: contain;
+  object-position: center;
   display: block;
+  padding: 6px;
+  background: #f6f7f9;
   transition: transform 0.9s cubic-bezier(.2,.8,.2,1), filter 0.5s;
   filter: saturate(1.02) contrast(1.02);
 }
 
 .ach-card:hover .ach-preview img {
-  transform: scale(1.06);
+  transform: scale(1.04);
   filter: saturate(1.1) contrast(1.05);
 }
 
@@ -747,25 +757,25 @@ code { font-family: ui-monospace, monospace; font-size: .9em; color: var(--accen
   height: 100%;
   border: 0;
   display: block;
-  pointer-events: none;              /* so the card link still works */
-  transform: scale(1.12);            /* crop default PDF viewer chrome */
+  pointer-events: none;              /* keeps card link clickable */
+  transform: scale(1.12);            /* crops PDF viewer chrome */
   transform-origin: top center;
   transition: transform 0.9s cubic-bezier(.2,.8,.2,1);
-  background: #fff;                  /* clean white while loading */
+  background: #fff;
 }
 .ach-card:hover .ach-preview iframe {
   transform: scale(1.18);
 }
 
-/* ---- gradient overlay for readability ---- */
+/* ---- soft bottom gradient overlay ---- */
 .ach-preview::after {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    transparent 55%,
-    rgba(5, 8, 12, 0.55) 100%
+    transparent 60%,
+    rgba(5, 8, 12, 0.45) 100%
   );
   pointer-events: none;
   z-index: 2;
@@ -883,7 +893,6 @@ code { font-family: ui-monospace, monospace; font-size: .9em; color: var(--accen
   .ach-grid { grid-template-columns: 1fr; }
   .ach-preview { aspect-ratio: 16 / 10; }
 }
-
 /* ====== MUSIC LIST ====== */
 .music-filter {
   margin-top: 1.25rem;

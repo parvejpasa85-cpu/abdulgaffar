@@ -1,6 +1,7 @@
 /* =========================================================
    Abdul Gaffar — Digital Space
-   Vanilla JS: cursor, navbar, mobile menu, scroll reveal, gallery, music filter
+   Vanilla JS: cursor, navbar, mobile menu, scroll reveal,
+   gallery, music filter, hero carousel, achievement stagger
    ========================================================= */
 
 (function () {
@@ -22,7 +23,7 @@
       dot.style.top = my + "px";
 
       const t = e.target;
-      const hover = t.closest("a, button, .card-glow, .window, .music-item, .cred-row");
+      const hover = t.closest("a, button, .card-glow, .window, .music-item, .cred-row, .ach-card");
       ring.classList.toggle("hover", !!hover);
     });
 
@@ -76,16 +77,20 @@
   } else {
     revealEls.forEach((el) => el.classList.add("in"));
   }
-/* ---------- 4b. Stagger achievement cards ---------- */
-document.querySelectorAll(".ach-grid").forEach((grid) => {
-  const cards = grid.querySelectorAll(".ach-card");
-  cards.forEach((card, i) => {
-    card.style.transitionDelay = `${Math.min(i * 70, 420)}ms`;
-    card.addEventListener("transitionend", () => {
-      card.style.transitionDelay = "0ms";
-    }, { once: true });
+
+  /* ---------- 4b. Stagger achievement cards ---------- */
+  document.querySelectorAll(".ach-grid").forEach((grid) => {
+    const cards = grid.querySelectorAll(".ach-card");
+    cards.forEach((card, i) => {
+      card.style.transitionDelay = `${Math.min(i * 70, 420)}ms`;
+      card.addEventListener(
+        "transitionend",
+        () => { card.style.transitionDelay = "0ms"; },
+        { once: true }
+      );
+    });
   });
-});
+
   /* ---------- 5. Magnetic back-to-top button ---------- */
   const magnetic = document.querySelector(".magnetic");
   if (magnetic && isFine) {
@@ -278,7 +283,8 @@ document.querySelectorAll(".ach-grid").forEach((grid) => {
       });
     });
   })();
-    /* ---------- 9. Hero carousel (coverflow) ---------- */
+
+  /* ---------- 9. Hero carousel (coverflow) ---------- */
   (function initHeroCarousel() {
     const stage = document.getElementById("carouselStage");
     const dotsWrap = document.getElementById("carouselDots");
@@ -332,7 +338,6 @@ document.querySelectorAll(".ach-grid").forEach((grid) => {
       // offset: 0 = center, ±1 = near, ±2 = far, else hidden
       const half = Math.floor(N / 2);
       let o = offset;
-      // wrap into range [-half, half]
       while (o > half) o -= N;
       while (o < -half) o += N;
 
@@ -347,12 +352,10 @@ document.querySelectorAll(".ach-grid").forEach((grid) => {
     function update() {
       slides.forEach((slide, i) => {
         let offset = i - currentIndex;
-        // wrap offset to shortest path
         const half = Math.floor(N / 2);
         if (offset > half) offset -= N;
         if (offset < -half) offset += N;
 
-        // remove all pos-* classes
         slide.className = "carousel-slide " + positionFor(offset);
       });
 
@@ -384,7 +387,7 @@ document.querySelectorAll(".ach-grid").forEach((grid) => {
       startAuto();
     }
 
-    // Pause on hover (nice UX)
+    // Pause on hover
     const carousel = document.getElementById("heroCarousel");
     carousel.addEventListener("mouseenter", stopAuto);
     carousel.addEventListener("mouseleave", startAuto);
@@ -400,18 +403,20 @@ document.querySelectorAll(".ach-grid").forEach((grid) => {
     update();
     startAuto();
   })();
-  /* ---------- 11. Stagger achievement card reveal ---------- */
-(function staggerAchievements() {
-  document.querySelectorAll(".ach-grid").forEach((grid) => {
-    const cards = grid.querySelectorAll(".ach-card");
-    cards.forEach((card, i) => {
-      card.style.transitionDelay = `${Math.min(i * 70, 420)}ms`;
-      card.addEventListener(
-        "transitionend",
-        () => { card.style.transitionDelay = "0ms"; },
-        { once: true }
-      );
+
+  /* ---------- 10. PDF thumbnail fallback (if a PDF iframe fails) ---------- */
+  document.querySelectorAll(".ach-preview iframe").forEach((iframe) => {
+    iframe.addEventListener("error", () => {
+      const parent = iframe.parentElement;
+      parent.classList.add("pdf-preview");
+      iframe.style.display = "none";
+      if (!parent.querySelector(".pdf-icon")) {
+        parent.insertAdjacentHTML(
+          "beforeend",
+          '<div class="pdf-icon"><svg viewBox="0 0 24 24" width="54" height="54" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg><span>PDF</span></div>'
+        );
+      }
     });
   });
-})();
+
 })();
