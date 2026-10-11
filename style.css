@@ -709,7 +709,7 @@ code { font-family: ui-monospace, monospace; font-size: .9em; color: var(--accen
     0 0 0 1px rgba(140, 240, 208, 0.12);
 }
 
-/* ---- preview ---- */
+/* ---- preview box ---- */
 .ach-preview {
   position: relative;
   width: 100%;
@@ -722,6 +722,7 @@ code { font-family: ui-monospace, monospace; font-size: .9em; color: var(--accen
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+/* ---- image preview ---- */
 .ach-preview img {
   width: 100%;
   height: 100%;
@@ -737,7 +738,26 @@ code { font-family: ui-monospace, monospace; font-size: .9em; color: var(--accen
   filter: saturate(1.1) contrast(1.05);
 }
 
-/* gradient overlay for readability */
+/* ---- iframe (PDF) preview ---- */
+.ach-preview iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  pointer-events: none;              /* so the card link still works */
+  transform: scale(1.12);            /* crop default PDF viewer chrome */
+  transform-origin: top center;
+  transition: transform 0.9s cubic-bezier(.2,.8,.2,1);
+  background: #fff;                  /* clean white while loading */
+}
+.ach-card:hover .ach-preview iframe {
+  transform: scale(1.18);
+}
+
+/* ---- gradient overlay for readability ---- */
 .ach-preview::after {
   content: "";
   position: absolute;
@@ -751,33 +771,7 @@ code { font-family: ui-monospace, monospace; font-size: .9em; color: var(--accen
   z-index: 2;
 }
 
-/* PDF fallback preview */
-.ach-preview.pdf-preview {
-  display: grid;
-  place-items: center;
-}
-.ach-preview.pdf-preview .pdf-icon {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.6rem;
-  color: var(--accent);
-}
-.ach-preview.pdf-preview .pdf-icon svg {
-  width: 54px;
-  height: 54px;
-  filter: drop-shadow(0 0 20px rgba(140, 240, 208, 0.4));
-}
-.ach-preview.pdf-preview .pdf-icon span {
-  font-size: 0.7rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-/* year badge */
+/* ---- year badge ---- */
 .ach-badge {
   position: absolute;
   top: 0.9rem;
@@ -794,7 +788,7 @@ code { font-family: ui-monospace, monospace; font-size: .9em; color: var(--accen
   box-shadow: 0 6px 20px -6px rgba(140, 240, 208, 0.7);
 }
 
-/* hover open pill */
+/* ---- hover "Open" pill ---- */
 .ach-open {
   position: absolute;
   right: 0.9rem;
@@ -884,8 +878,6 @@ code { font-family: ui-monospace, monospace; font-size: .9em; color: var(--accen
 .ach-card:hover .ach-foot .arrow {
   transform: translate(3px, -3px);
 }
-
-/* reveal animation stagger (handled by JS delay already) */
 
 @media (max-width: 520px) {
   .ach-grid { grid-template-columns: 1fr; }

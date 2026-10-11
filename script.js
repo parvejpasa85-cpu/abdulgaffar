@@ -400,4 +400,18 @@ document.querySelectorAll(".ach-grid").forEach((grid) => {
     update();
     startAuto();
   })();
+  /* ---------- 11. Stagger achievement card reveal ---------- */
+(function staggerAchievements() {
+  document.querySelectorAll(".ach-grid").forEach((grid) => {
+    const cards = grid.querySelectorAll(".ach-card");
+    cards.forEach((card, i) => {
+      card.style.transitionDelay = `${Math.min(i * 70, 420)}ms`;
+      card.addEventListener(
+        "transitionend",
+        () => { card.style.transitionDelay = "0ms"; },
+        { once: true }
+      );
+    });
+  });
+})();
 })();
