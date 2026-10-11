@@ -76,7 +76,16 @@
   } else {
     revealEls.forEach((el) => el.classList.add("in"));
   }
-
+/* ---------- 4b. Stagger achievement cards ---------- */
+document.querySelectorAll(".ach-grid").forEach((grid) => {
+  const cards = grid.querySelectorAll(".ach-card");
+  cards.forEach((card, i) => {
+    card.style.transitionDelay = `${Math.min(i * 70, 420)}ms`;
+    card.addEventListener("transitionend", () => {
+      card.style.transitionDelay = "0ms";
+    }, { once: true });
+  });
+});
   /* ---------- 5. Magnetic back-to-top button ---------- */
   const magnetic = document.querySelector(".magnetic");
   if (magnetic && isFine) {
@@ -115,7 +124,7 @@
         base: "assets/images/moments/rajshahi_photos/",
         files: [
           "rajshahi1.jpg",
-          "rajshahi2.jpg",
+          "rajshahi2.jpeg",
           "rajshahi3.jpg",
           "rajshahi4.jpg",
           "rajshahi5.jpg",
@@ -278,10 +287,10 @@
     // ⬇️ এখানে তোমার ৫টা ছবি দাও — 순서대로
     const IMAGES = [
       "assets/images/moments/abdul_gaffar_casual_picture.JPG",
-      "assets/images/moments/abdulgaffar_formal_picture.jpg",
+      "assets/images/moments/photos/self/me4.jpeg",
       "assets/images/moments/photos/self/me1.jpeg",
-      "assets/images/moments/photos/self/me2.jpeg",
-      "assets/images/moments/photos/self/me3.jpeg",
+      "assets/images/moments/photos/self/me9.jpeg",
+      "assets/images/moments/photos/self/me5.jpeg",
     ];
 
     const N = IMAGES.length;
